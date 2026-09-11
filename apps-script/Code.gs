@@ -28,7 +28,7 @@ function doPost(e) {
 
     sheet.appendRow([
       nextId,
-      data.fecha || new Date().toISOString(),
+      data.fecha || Utilities.formatDate(new Date(), "America/Bogota", "dd/MM/yyyy HH:mm"),
       data.nombre || "",
       data.tienda || "",
       "'" + (data.codigoPais || ""), // apóstrofe: Sheets lo guarda como texto, no como fórmula

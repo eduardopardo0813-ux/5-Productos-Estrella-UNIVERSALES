@@ -318,6 +318,19 @@
 
   var QUEUE_KEY = "universales_pending_leads";
 
+  function fechaLegible(){
+    var d = new Date();
+    return d.toLocaleString("es-CO", {
+      timeZone: "America/Bogota",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    });
+  }
+
   function readQueue(){
     try { return JSON.parse(localStorage.getItem(QUEUE_KEY)) || []; }
     catch(e){ return []; }
@@ -437,7 +450,7 @@
       codigoPais: whatsappCountry.value,
       whatsapp: form.whatsapp.value.trim(),
       correo: form.correo.value.trim(),
-      fecha: new Date().toISOString()
+      fecha: fechaLegible()
     };
 
     var entry = { id: Date.now() + "_" + Math.random().toString(36).slice(2), data: data, attempts: 0 };
