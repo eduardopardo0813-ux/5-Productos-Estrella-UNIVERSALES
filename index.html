@@ -434,7 +434,8 @@
     var data = {
       nombre: form.nombre.value.trim(),
       tienda: form.tienda.value.trim(),
-      whatsapp: whatsappCountry.value + " " + form.whatsapp.value.trim(),
+      codigoPais: whatsappCountry.value,
+      whatsapp: form.whatsapp.value.trim(),
       correo: form.correo.value.trim(),
       fecha: new Date().toISOString()
     };

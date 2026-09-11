@@ -3,7 +3,8 @@
  *
  * Setup:
  * 1. Crear una Google Sheet nueva. En la primera fila de la primera pestaña
- *    poner los encabezados: #ID | Fecha | Nombre | Tienda | WhatsApp | Correo
+ *    poner los encabezados:
+ *    #ID | Fecha | Nombre | Tienda | Código País | WhatsApp | Correo
  * 2. Extensiones > Apps Script, borrar el contenido y pegar este archivo.
  * 3. Implementar > Nueva implementación > Tipo: Aplicación web.
  *    - Ejecutar como: Yo
@@ -30,7 +31,8 @@ function doPost(e) {
       data.fecha || new Date().toISOString(),
       data.nombre || "",
       data.tienda || "",
-      "'" + (data.whatsapp || ""), // el apóstrofe fuerza a Sheets a tratarlo como texto, no como fórmula
+      "'" + (data.codigoPais || ""), // apóstrofe: Sheets lo guarda como texto, no como fórmula
+      "'" + (data.whatsapp || ""),
       data.correo || ""
     ]);
   } finally {
