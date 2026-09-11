@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Universales · Top 5 productos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple-950:#1F0E52;
+    --purple-800:#35198B;
+    --purple-700:#4E2DE0;
+    --purple-500:#7657F0;
+    --purple-200:#DCD3FB;
+    --orange-600:#E8720B;
+    --orange-500:#F7941E;
+    --orange-300:#FFC168;
+    --cream:#F5F2FC;
+    --paper:#FFFFFF;
+    --ink:#241454;
+    --ink-soft:#5C4F93;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Nunito',system-ui,sans-serif;
+    min-height:100vh;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:2.5rem 1.1rem;
+  }
+
+  .card{
+    width:100%;
+    max-width:420px;
+    background:var(--paper);
+    border-radius:28px;
+    padding:1.9rem 1.6rem 1.7rem;
+    box-shadow:0 26px 55px -24px rgba(31,14,82,.45);
+  }
+
+  .brand-row{
+    display:flex;
+    align-items:center;
+    gap:.7rem;
+    margin-bottom:1.3rem;
+  }
+  .logo-badge{
+    width:56px;height:56px;
+    border-radius:50%;
+    overflow:hidden;
+    flex:none;
+    background:var(--purple-700);
+    box-shadow:0 6px 14px -6px rgba(40,19,106,.6);
+  }
+  .logo-badge img{width:100%;height:100%;object-fit:cover;display:block;}
+  .brand-word{
+    font-family:'Baloo 2',sans-serif;
+    font-weight:800;
+    font-size:1.15rem;
+    line-height:1;
+    color:var(--purple-800);
+  }
+  .brand-word small{
+    display:block;
+    font-family:'Nunito',sans-serif;
+    font-weight:700;
+    font-size:.65rem;
+    letter-spacing:.08em;
+    color:var(--orange-600);
+    margin-top:.18rem;
+  }
+
+  h1{
+    font-family:'Baloo 2',sans-serif;
+    font-weight:700;
+    font-size:1.35rem;
+    color:var(--purple-900,var(--purple-800));
+    margin:0 0 .35rem;
+    text-wrap:balance;
+  }
+  .lead{
+    color:var(--ink-soft);
+    font-size:.9rem;
+    line-height:1.5;
+    margin:0 0 1.35rem;
+  }
+
+  .field{margin-bottom:.95rem;}
+  .field label{
+    display:block;
+    font-size:.74rem;
+    font-weight:800;
+    letter-spacing:.02em;
+    color:var(--purple-800);
+    margin-bottom:.32rem;
+  }
+  .field label .opt{
+    color:var(--ink-soft);
+    font-weight:600;
+    text-transform:none;
+  }
+  .field input{
+    width:100%;
+    border:2px solid var(--purple-200);
+    background:#fff;
+    border-radius:12px;
+    padding:.7rem .85rem;
+    font-size:.92rem;
+    font-family:inherit;
+    font-weight:700;
+    color:var(--ink);
+    outline-offset:2px;
+  }
+  .field input:focus{border-color:var(--orange-500);}
+  .field .err{
+    display:none;
+    color:var(--orange-600);
+    font-size:.74rem;
+    font-weight:700;
+    margin-top:.3rem;
+  }
+  .field.invalid input{border-color:var(--orange-600);}
+  .field.invalid .err{display:block;}
+
+  button{
+    font-family:inherit;
+    cursor:pointer;
+  }
+  .cta{
+    width:100%;
+    margin-top:.4rem;
+    background:linear-gradient(180deg,var(--orange-500),var(--orange-600));
+    color:#fff;
+    font-family:'Baloo 2',sans-serif;
+    font-weight:700;
+    font-size:1rem;
+    text-align:center;
+    border:none;
+    border-radius:14px;
+    padding:.9rem;
+    box-shadow:0 12px 22px -8px rgba(232,114,11,.6);
+  }
+  .cta:disabled{opacity:.7;cursor:default;}
+  .cta:focus-visible{outline:3px solid var(--purple-500);}
+
+  .note{
+    margin-top:.9rem;
+    font-size:.72rem;
+    color:var(--ink-soft);
+    text-align:center;
+  }
+
+  /* ---- result screen ---- */
+  .result{display:none;text-align:center;}
+  .result.active{display:block;}
+  .form-screen.hidden{display:none;}
+
+  .result-img-wrap{
+    border-radius:20px;
+    overflow:hidden;
+    border:2px solid var(--purple-200);
+    margin-bottom:1.1rem;
+    background:var(--cream);
+  }
+  .result-img-wrap img{width:100%;display:block;}
+
+  .result h2{
+    font-family:'Baloo 2',sans-serif;
+    font-size:1.15rem;
+    color:var(--purple-800);
+    margin:0 0 .3rem;
+  }
+  .result p{
+    color:var(--ink-soft);
+    font-size:.85rem;
+    margin:0 0 1.1rem;
+  }
+  .download{
+    display:inline-block;
+    width:100%;
+    background:var(--purple-700);
+    color:#fff;
+    font-family:'Baloo 2',sans-serif;
+    font-weight:700;
+    font-size:.98rem;
+    border-radius:14px;
+    padding:.85rem;
+    text-decoration:none;
+    box-shadow:0 12px 22px -8px rgba(78,45,224,.55);
+  }
+
+  .sync-note{
+    margin-top:.85rem;
+    font-size:.72rem;
+    color:var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+
+  <div class="card">
+
+    <div class="brand-row">
+      <div class="logo-badge">
+        <img src="assets/logo.jpg" alt="Universales">
+      </div>
+      <div class="brand-word">Universales<small>TIENDAS ALIADAS</small></div>
+    </div>
+
+    <div class="form-screen" id="formScreen">
+      <h1>Descubrí el Top 5 de productos más vendidos</h1>
+      <p class="lead">Completá tus datos y recibí al instante la imagen con los 5 productos estrella para tu tienda.</p>
+
+      <form id="leadForm" novalidate>
+        <div class="field" data-field="nombre">
+          <label for="nombre">Nombre completo</label>
+          <input id="nombre" name="nombre" type="text" autocomplete="name" required>
+          <div class="err">Escribí tu nombre completo.</div>
+        </div>
+        <div class="field" data-field="tienda">
+          <label for="tienda">Nombre de la tienda</label>
+          <input id="tienda" name="tienda" type="text" autocomplete="organization" required>
+          <div class="err">Contanos el nombre de tu tienda.</div>
+        </div>
+        <div class="field" data-field="whatsapp">
+          <label for="whatsapp">WhatsApp</label>
+          <input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="+57 300 000 0000" required>
+          <div class="err">Ingresá un WhatsApp válido.</div>
+        </div>
+        <div class="field" data-field="correo">
+          <label for="correo">Correo <span class="opt">(opcional)</span></label>
+          <input id="correo" name="correo" type="email" autocomplete="email">
+          <div class="err">Revisá el formato del correo.</div>
+        </div>
+
+        <button type="submit" class="cta" id="submitBtn">Ver mi Top 5 →</button>
+        <p class="note">Tus datos se guardan de forma segura y solo se usan para contactarte sobre estos productos.</p>
+      </form>
+    </div>
+
+    <div class="result" id="resultScreen">
+      <div class="result-img-wrap">
+        <img src="assets/top5-productos.jpg" alt="Top 5 de los productos más vendidos - Universales">
+      </div>
+      <h2>¡Acá tenés tu Top 5!</h2>
+      <p>Guardala o compartila directo desde tu galería.</p>
+      <a class="download" id="downloadBtn" href="assets/top5-productos.jpg" download="top5-universales.jpg">Descargar imagen</a>
+      <p class="sync-note" id="syncNote"></p>
+    </div>
+
+  </div>
+
+<script>
+(function(){
+  /*
+   * Reemplazar por la URL del Web App de Apps Script una vez desplegado
+   * (Extensiones > Apps Script > Implementar > Nueva implementación > Aplicación web).
+   */
+  var SHEETS_ENDPOINT = "PEGAR_AQUI_LA_URL_DEL_APPS_SCRIPT";
+
+  var QUEUE_KEY = "universales_pending_leads";
+
+  function readQueue(){
+    try { return JSON.parse(localStorage.getItem(QUEUE_KEY)) || []; }
+    catch(e){ return []; }
+  }
+  function writeQueue(q){
+    try { localStorage.setItem(QUEUE_KEY, JSON.stringify(q)); }
+    catch(e){ /* localStorage no disponible: seguimos sin cola local */ }
+  }
+
+  function sendLead(entry){
+    if (SHEETS_ENDPOINT.indexOf("http") !== 0) return Promise.reject(new Error("endpoint no configurado"));
+    return fetch(SHEETS_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(entry.data)
+    });
+  }
+
+  function flushQueue(){
+    var q = readQueue();
+    if (!q.length) return;
+    var remaining = [];
+    var chain = Promise.resolve();
+    q.forEach(function(entry){
+      chain = chain.then(function(){
+        return sendLead(entry).catch(function(){
+          entry.attempts = (entry.attempts || 0) + 1;
+          if (entry.attempts < 8) remaining.push(entry);
+        });
+      });
+    });
+    chain.then(function(){ writeQueue(remaining); });
+  }
+
+  window.addEventListener("online", flushQueue);
+  document.addEventListener("DOMContentLoaded", flushQueue);
+
+  var form = document.getElementById("leadForm");
+  var submitBtn = document.getElementById("submitBtn");
+  var formScreen = document.getElementById("formScreen");
+  var resultScreen = document.getElementById("resultScreen");
+  var syncNote = document.getElementById("syncNote");
+
+  var validators = {
+    nombre: function(v){ return v.trim().length >= 3; },
+    tienda: function(v){ return v.trim().length >= 2; },
+    whatsapp: function(v){ return v.replace(/[^0-9]/g,"").length >= 7; },
+    correo: function(v){ return v.trim() === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); }
+  };
+
+  function validate(){
+    var ok = true;
+    Object.keys(validators).forEach(function(name){
+      var input = form.elements[name];
+      var wrap = form.querySelector('[data-field="'+name+'"]');
+      var valid = validators[name](input.value);
+      wrap.classList.toggle("invalid", !valid);
+      if (!valid) ok = false;
+    });
+    return ok;
+  }
+
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    if (!validate()) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Un momento...";
+
+    var data = {
+      nombre: form.nombre.value.trim(),
+      tienda: form.tienda.value.trim(),
+      whatsapp: form.whatsapp.value.trim(),
+      correo: form.correo.value.trim(),
+      fecha: new Date().toISOString()
+    };
+
+    var entry = { id: Date.now() + "_" + Math.random().toString(36).slice(2), data: data, attempts: 0 };
+    var q = readQueue();
+    q.push(entry);
+    writeQueue(q);
+
+    // La imagen se muestra siempre, sin esperar la confirmación de red:
+    // así la persona nunca se queda sin su Top 5 por un wifi lento del evento.
+    formScreen.classList.add("hidden");
+    resultScreen.classList.add("active");
+    syncNote.textContent = "Guardando tus datos...";
+
+    sendLead(entry).then(function(){
+      writeQueue(readQueue().filter(function(e){ return e.id !== entry.id; }));
+      syncNote.textContent = "";
+    }).catch(function(){
+      syncNote.textContent = "Tus datos quedaron guardados en el celular y se enviarán solos apenas haya señal.";
+    });
+  });
+})();
+</script>
+</body>
+</html>
