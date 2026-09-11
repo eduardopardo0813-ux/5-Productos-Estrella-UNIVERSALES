@@ -22,7 +22,7 @@
  * forzar una sincronización manual cuando quieras.
  */
 
-var DEST_SHEET_ID = "PEGAR_AQUI_EL_ID_DE_LA_HOJA_PARA_EL_CLIENTE";
+var DEST_SHEET_ID = "1woaKQBzOh8738sp8PWjpFhIoT8HtPsN9BHAwsDOcPtI";
 
 function sincronizar() {
   var origenHoja = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
