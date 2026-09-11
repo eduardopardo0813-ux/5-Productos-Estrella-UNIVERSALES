@@ -2,8 +2,8 @@
  * Backend de Google Sheets para el formulario Universales.
  *
  * Setup:
- * 1. Crear una Google Sheet nueva. En la primera fila poner los encabezados:
- *    Fecha | Nombre | Tienda | WhatsApp | Correo
+ * 1. Crear una Google Sheet nueva. En la primera fila de la primera pestaña
+ *    poner los encabezados: Fecha | Nombre | Tienda | WhatsApp | Correo
  * 2. Extensiones > Apps Script, borrar el contenido y pegar este archivo.
  * 3. Implementar > Nueva implementación > Tipo: Aplicación web.
  *    - Ejecutar como: Yo
@@ -12,10 +12,8 @@
  *    dentro de index.html.
  */
 
-var SHEET_NAME = "Respuestas";
-
 function doPost(e) {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
   var data = JSON.parse(e.postData.contents);
 
   sheet.appendRow([
